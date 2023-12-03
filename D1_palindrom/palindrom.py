@@ -36,9 +36,9 @@ def palindrom_product(x: int):
     groesster_palindrom = 0
     for i in range(100, 1000):
         for j in range(100, 1000):
-            produkt = i * j
-            if 1000 > produkt < x and is_palindrom(str(produkt)):
-                groesster_palindrom = max(groesster_palindrom, produkt)
+            erg = i * j
+            if 100 <= erg < x and is_palindrom(str(erg)):
+                groesster_palindrom = max(groesster_palindrom, erg)
     return groesster_palindrom
 
 def get_dec_hex_palindrom(x: int):
@@ -64,16 +64,32 @@ if __name__ == "__main__":
     else:
         print("False")
 
+    test_ispalindrom2 = "abcdeedcba"
+    if is_palindrom(test_ispalindrom2):
+        print("True")
+    else:
+        print("False")
+
+
     #Methode2
     test_ispalindrom_sentence = "jbdafba"
     print(f'Ist "{test_ispalindrom_sentence}" ein palindrom Satz? {is_palindrom_sentence(test_ispalindrom_sentence)}')
 
+    test_ispalindrom_sentence2 = "Was it a car or a cat I saw?"
+    print(f'Ist "{test_ispalindrom_sentence2}" ein Palindromsatz? {is_palindrom_sentence(test_ispalindrom_sentence2)}')
+
+
     #Methode3
-    test_is_palindrom_produkt = palindrom_product(1000)
+    test_is_palindrom_produkt = palindrom_product(10000)
     print(f'Größtes Palindromprodukt von zwei 3-stelligen Zahlen kleiner als 1000: {test_is_palindrom_produkt}')
 
-    #Methode4
-    max_dec_hex_palindrom = get_dec_hex_palindrom(10000)
-    print(f'Größtes Palindrom im Dezimal- und Hexadezimalsystem kleiner als 10000: {max_dec_hex_palindrom}')
+    test_is_palindrom_produkt2 = palindrom_product(5005)
+    print(f'Größtes Palindromprodukt von zwei 3-stelligen Zahlen kleiner als 500: {test_is_palindrom_produkt2}')
 
+    #Methode4
+    get_dec_hex_palindrom = get_dec_hex_palindrom(10000)
+    print(f'Größtes Palindrom im Dezimal- und Hexadezimalsystem kleiner als 10000: {get_dec_hex_palindrom}')
+
+    get_dec_hex_palindrom2 = get_dec_hex_palindrom
+    print(f'Größtes Palindrom im Dezimal- und Hexadezimalsystem kleiner als 5000: {get_dec_hex_palindrom2}')
 

@@ -32,7 +32,20 @@ def collatz_sequence(number: int):
 
 from typing import Tuple
 
+def longest_collatz_sequence(n: int):
+    """
+    Ermittelt den Startwert und die Länge der längsten Collatz-Zahlenfolge bis zu einer gegebenen Grenze.
 
+    :param n: Obergrenze für den Startwert
+    :return: Tuple (Startwert, Länge der Zahlenfolge)
+    """
+    max_start, max_length = 0, 0
+    for start in range(1, n + 1):
+        current_sequence = collatz_sequence(start)
+        current_length = len(current_sequence)
+        if current_length > max_length:
+            max_start, max_length = start, current_length
+    return max_start, max_length
 
 
 if __name__ == "__main__":

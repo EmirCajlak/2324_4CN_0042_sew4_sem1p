@@ -56,5 +56,12 @@ if __name__ == "__main__":
     collatz_sequence_result = collatz_sequence(startzahl)
     print(f'Collatz-Folge für Startzahl {startzahl}: {collatz_sequence_result}')
 
+    startwert, laenge = longest_collatz_sequence(20)
+    print(f'Längste Collatz-Folge bis 20 startet bei {startwert} und hat eine Länge von {laenge}.')
 
+    startwert, laenge = longest_collatz_sequence(100)
+    print(f'Längste Collatz-Folge bis 100 startet bei {startwert} und hat eine Länge von {laenge}.')
+
+    startwert, laenge = longest_collatz_sequence(500)
+    print(f'Längste Collatz-Folge bis 500 startet bei {startwert} und hat eine Länge von {laenge}.')
 

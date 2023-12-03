@@ -41,6 +41,20 @@ def palindrom_product(x: int):
                 groesster_palindrom = max(groesster_palindrom, produkt)
     return groesster_palindrom
 
+def get_dec_hex_palindrom(x: int):
+    """
+    Findet die größte Zahl (kleiner als x), die sowohl im Dezimalsystem als auch im Hexadezimalsystem ein Palindrom ist.
+
+    :param x: Obergrenze
+    :return: Größte Palindromzahl
+    """
+    groesster_palindrom = 0
+    for zahl in range(x - 1, 0, -1): #Eine Schleife wird gestartet, die von x - 1 bis 1 in absteigender Reihenfolge läuft. Das bedeutet, dass wir von der oberen Grenze x beginnen und bis zur Zahl 1 hinuntergehen.
+        if is_palindrom(str(zahl)) and is_palindrom(hex(zahl)[2:]): #[2:], um die ersten beiden zu entfernen
+            groesster_palindrom = zahl
+            break
+    return groesster_palindrom
+
 
 if __name__ == "__main__":
     #Methode1
@@ -54,7 +68,12 @@ if __name__ == "__main__":
     test_ispalindrom_sentence = "jbdafba"
     print(f'Ist "{test_ispalindrom_sentence}" ein palindrom Satz? {is_palindrom_sentence(test_ispalindrom_sentence)}')
 
+    #Methode3
+    test_is_palindrom_produkt = palindrom_product(1000)
+    print(f'Größtes Palindromprodukt von zwei 3-stelligen Zahlen kleiner als 1000: {test_is_palindrom_produkt}')
 
-
+    #Methode4
+    max_dec_hex_palindrom = get_dec_hex_palindrom(10000)
+    print(f'Größtes Palindrom im Dezimal- und Hexadezimalsystem kleiner als 10000: {max_dec_hex_palindrom}')
 
 

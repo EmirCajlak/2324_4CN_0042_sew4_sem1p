@@ -49,4 +49,7 @@ def longest_collatz_sequence(n: int):
 
 
 if __name__ == "__main__":
-    t
+    test_collatz = 5
+    print(collatz(test_collatz))
+
+

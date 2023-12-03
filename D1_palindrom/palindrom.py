@@ -6,7 +6,7 @@ UE04
 
 def is_palindrom (s:str):
     """
-    Die Methode überprüft, ob der gegebene String von Zeile 17 palindrom ist oder nicht
+    Die Methode überprüft, ob der gegebene String von Main palindrom ist oder nicht
     [::-1],
     :param s: Der String, den man überprüfen soll
     :return: True, wenn es palindrom ist, false wenn nicht
@@ -16,18 +16,12 @@ def is_palindrom (s:str):
 
 def is_palindrom_sentence(s:str):
     """
-
+    Überprüft ob der Satz von Main palindrom ist oder nicht
     :param s: Der String, den man überprüfen soll
     :return: True, wenn der Satz palindrom ist, false wenn nicht
     """
-    s = s.lower()
-    erg = ""
-    for char in range(len(s)):
-        if s[char].isalnum():
-            erg += s[char]
-
-    if erg[::-1] == erg:
-        return erg
+    erg = ''.join(s.lower() for c in s if s.isalnum())
+    return erg == erg[::-1]
 
 
 if __name__ == "__main__":
@@ -39,11 +33,8 @@ if __name__ == "__main__":
         print("False")
 
     #Methode2
-    test_ispalindrom_sentence = "oho!"
-    if is_palindrom(test_ispalindrom_sentence):
-        print("True")
-    else:
-        print("False")
+    test_ispalindrom_sentence = "jbdafba"
+    print(f'Ist "{test_ispalindrom_sentence}" ein palindrom Satz? {is_palindrom_sentence(test_ispalindrom_sentence)}')
 
 
 

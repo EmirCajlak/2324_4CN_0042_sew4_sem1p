@@ -52,4 +52,9 @@ if __name__ == "__main__":
     test_collatz = 5
     print(collatz(test_collatz))
 
+    startzahl = 19
+    collatz_sequence_result = collatz_sequence(startzahl)
+    print(f'Collatz-Folge für Startzahl {startzahl}: {collatz_sequence_result}')
+
+
 

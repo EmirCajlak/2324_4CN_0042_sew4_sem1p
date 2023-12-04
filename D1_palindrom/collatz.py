@@ -15,7 +15,6 @@ def collatz(n: int):
     else:
         return 3 * n + 1
 
-from typing import List
 
 def collatz_sequence(number: int):
     """
@@ -29,8 +28,6 @@ def collatz_sequence(number: int):
         number = collatz(number)
         sequence.append(number)
     return sequence
-
-from typing import Tuple
 
 def longest_collatz_sequence(n: int):
     """

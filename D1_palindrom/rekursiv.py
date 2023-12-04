@@ -18,5 +18,14 @@ if __name__ == "__main__":
     # Dictionary m_dict mit 200 Elementen
     m_dict = {n: M(n) for n in range(200)}
 
+    max_value_list = max(m_list)
+    max_value_dict = max(m_dict.values())
+    max_position_list = m_list.index(max_value_list)
+    max_position_dict = max(m_dict, key=m_dict.get)
 
-    
+    print(f"Maximalwert in m_list: {max_value_list} an Position {max_position_list}")
+    print(f"Maximalwert in m_dict: {max_value_dict} an Position {max_position_dict}")
+
+    # Dauer der Berechnung
+    t0 = time()
+    print(t0)

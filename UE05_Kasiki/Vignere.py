@@ -82,21 +82,21 @@ class Vigenere:
                 decrypted_text += char
         return decrypted_text
 
-    # def crack(self, ciphertext: str, key_length: int) -> List[str]:
-    #     """
-    #     Knackt den Schlüssel und gibt eine Liste möglicher Entschlüsselungen zurück.
-    #
-    #     :param ciphertext: Der verschlüsselte Text
-    #     :param key_length: Die Länge des Schlüssels
-    #     :return: Liste möglicher Entschlüsselungen
-    #     """
-    #     possibilities = []
-    #     for i in range(key_length):
-    #         substring = ciphertext[i::key_length]
-    #         caesar = Caesar()
-    #         cracked_positions = caesar.crack(substring, elements=1)
-    #         possibilities.append((cracked_positions[0][0], ""))
-    #     return possibilities
+    def crack(self, ciphertext: str, key_length: int) -> List[str]:
+        """
+        Knackt den Schlüssel und gibt eine Liste möglicher Entschlüsselungen zurück.
+
+        :param ciphertext: Der verschlüsselte Text
+        :param key_length: Die Länge des Schlüssels
+        :return: Liste möglicher Entschlüsselungen
+        """
+        possibilities = []
+        for i in range(key_length):
+            substring = ciphertext[i::key_length]
+            caesar = Caesar()
+            cracked_positions = caesar.crack(substring, elements=1)
+            possibilities.append((cracked_positions[0][0], ""))
+        return possibilities
 
 # class Caesar:
 #     """

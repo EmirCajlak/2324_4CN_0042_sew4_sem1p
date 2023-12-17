@@ -55,4 +55,14 @@ class Caesar:
                 encrypted_text += char
         return encrypted_text
 
+        def decrypt(self, ciphertext: str, key: str = None) -> str:
+            """
+            Entschlüsselt den Text mithilfe der Caesar-Chiffre.
+
+            :param ciphertext: Der zu entschlüsselnde Text
+            :param key: Optionaler Schlüssel, falls nicht festgelegt
+            :return: Entschlüsselter Text
+            :raise ValueError: Wenn der Schlüssel nicht festgelegt ist
+            """
+
 

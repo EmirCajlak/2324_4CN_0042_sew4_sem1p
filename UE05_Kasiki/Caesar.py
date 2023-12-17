@@ -94,5 +94,18 @@ class Caesar:
                     break
             return possibilities
 
+        if __name__ == "__main__":
+            # Beispiel für die Verwendung der Caesar-Klasse
+            caesar = Caesar()
+            caesar.key = 'd'
 
+            plaintext = "Hello, World!"
+            encrypted_text = caesar.encrypt(plaintext)
+            decrypted_text = caesar.decrypt(encrypted_text)
+            cracked_texts = caesar.crack(encrypted_text, elements=5)
+
+            print(f"Plaintext: {plaintext}")
+            print(f"Encrypted: {encrypted_text}")
+            print(f"Decrypted: {decrypted_text}")
+            print(f"Cracked possibilities: {cracked_texts}")
 

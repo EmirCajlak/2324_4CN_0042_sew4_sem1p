@@ -30,31 +30,31 @@ class Vigenere:
             raise ValueError("Key must be a non-empty string of alphabetic characters")
         self._key = value.lower()
 
-    # def encrypt(self, plaintext: str, key: str = None) -> str:
-    #     """
-    #     Verschlüsselt den Text mithilfe der Vigenere-Chiffre.
-    #
-    #     :param plaintext: Der zu verschlüsselnde Text
-    #     :param key: Optionaler Schlüssel, falls nicht festgelegt
-    #     :return: Verschlüsselter Text
-    #     :raise ValueError: Wenn der Schlüssel nicht festgelegt ist
-    #     """
-    #     key = key or self.key
-    #     if not key:
-    #         raise ValueError("Key must be set before encrypting")
-    #     encrypted_text = ""
-    #     key_index = 0
-    #     for char in plaintext:
-    #         if char.isalpha():
-    #             shift = ord(key[key_index]) - ord('a')
-    #             caesar = Caesar()
-    #             caesar.key = key[key_index]
-    #             encrypted_char = caesar.encrypt(char)
-    #             encrypted_text += encrypted_char
-    #             key_index = (key_index + 1) % len(key)
-    #         else:
-    #             encrypted_text += char
-    #     return encrypted_text
+    def encrypt(self, plaintext: str, key: str = None) -> str:
+        """
+        Verschlüsselt den Text mithilfe der Vigenere-Chiffre.
+
+        :param plaintext: Der zu verschlüsselnde Text
+        :param key: Optionaler Schlüssel, falls nicht festgelegt
+        :return: Verschlüsselter Text
+        :raise ValueError: Wenn der Schlüssel nicht festgelegt ist
+        """
+        key = key or self.key
+        if not key:
+            raise ValueError("Key must be set before encrypting")
+        encrypted_text = ""
+        key_index = 0
+        for char in plaintext:
+            if char.isalpha():
+                shift = ord(key[key_index]) - ord('a')
+                caesar = Caesar()
+                caesar.key = key[key_index]
+                encrypted_char = caesar.encrypt(char)
+                encrypted_text += encrypted_char
+                key_index = (key_index + 1) % len(key)
+            else:
+                encrypted_text += char
+        return encrypted_text
     #
     # def decrypt(self, ciphertext: str, key: str = None) -> str:
     #     """

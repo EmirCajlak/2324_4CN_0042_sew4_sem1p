@@ -56,31 +56,31 @@ class Vigenere:
                 encrypted_text += char
         return encrypted_text
 
-    # def decrypt(self, ciphertext: str, key: str = None) -> str:
-    #     """
-    #     Entschlüsselt den Text mithilfe der Vigenere-Chiffre.
-    #
-    #     :param ciphertext: Der zu entschlüsselnde Text
-    #     :param key: Optionaler Schlüssel, falls nicht festgelegt
-    #     :return: Entschlüsselter Text
-    #     :raise ValueError: Wenn der Schlüssel nicht festgelegt ist
-    #     """
-    #     key = key or self.key
-    #     if not key:
-    #         raise ValueError("Key must be set before decrypting")
-    #     decrypted_text = ""
-    #     key_index = 0
-    #     for char in ciphertext:
-    #         if char.isalpha():
-    #             shift = ord(key[key_index]) - ord('a')
-    #             caesar = Caesar()
-    #             caesar.key = key[key_index]
-    #             decrypted_char = caesar.decrypt(char)
-    #             decrypted_text += decrypted_char
-    #             key_index = (key_index + 1) % len(key)
-    #         else:
-    #             decrypted_text += char
-    #     return decrypted_text
+    def decrypt(self, ciphertext: str, key: str = None) -> str:
+        """
+        Entschlüsselt den Text mithilfe der Vigenere-Chiffre.
+
+        :param ciphertext: Der zu entschlüsselnde Text
+        :param key: Optionaler Schlüssel, falls nicht festgelegt
+        :return: Entschlüsselter Text
+        :raise ValueError: Wenn der Schlüssel nicht festgelegt ist
+        """
+        key = key or self.key
+        if not key:
+            raise ValueError("Key must be set before decrypting")
+        decrypted_text = ""
+        key_index = 0
+        for char in ciphertext:
+            if char.isalpha():
+                shift = ord(key[key_index]) - ord('a')
+                caesar = Caesar()
+                caesar.key = key[key_index]
+                decrypted_char = caesar.decrypt(char)
+                decrypted_text += decrypted_char
+                key_index = (key_index + 1) % len(key)
+            else:
+                decrypted_text += char
+        return decrypted_text
     #
     # def crack(self, ciphertext: str, key_length: int) -> List[str]:
     #     """

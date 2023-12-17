@@ -81,7 +81,7 @@ class Vigenere:
             else:
                 decrypted_text += char
         return decrypted_text
-    #
+
     # def crack(self, ciphertext: str, key_length: int) -> List[str]:
     #     """
     #     Knackt den Schlüssel und gibt eine Liste möglicher Entschlüsselungen zurück.

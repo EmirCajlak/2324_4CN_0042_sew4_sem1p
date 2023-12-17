@@ -190,6 +190,7 @@ class Caesar:
                 break
         return possibilities
 
+
 if __name__ == "__main__":
     # Beispiel für die Verwendung der Vigenere-Klasse
     vigenere = Vigenere()

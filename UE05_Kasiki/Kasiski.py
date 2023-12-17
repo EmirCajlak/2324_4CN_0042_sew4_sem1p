@@ -1,29 +1,43 @@
 class Kasiski:
-    def __init__(self, crypttext: str):
+    def __init__(self, crypttext):
         self._crypttext = crypttext
 
     @property
     def crypttext(self):
         return self._crypttext
 
-    def dist(self, text: str, teilstring: str) -> list:
-        """Berechnet die Abstände zwischen den Wiederholungen des Teilstrings im verschlüsselten Text."""
-        positions = [pos for pos, char in enumerate(text) if text.find(teilstring, pos) == pos]
+    def dist(self, text, teilstring):
+        """
+        Berechnet die Abstände zwischen den Wiederholungen des Teilstrings im verschlüsselten Text.
+
+        Usage examples:
+        >>> dist("heissajuchei, ein ei", "ei")
+        [9, 13, 17]
+        >>> dist("heissajuchei, ein ei", "hai")
+        []
+        """
+        positions = []
+        start = 0
+
+        while True:
+            position = text.find(teilstring, start)
+            if position == -1:
+                break
+            positions.append(position)
+            start = position + 1
+
         distances = [positions[i + 1] - positions[i] for i in range(len(positions) - 1)]
         return distances
 
 
-# Beispielanwendung
+# Beispiel-Nutzung
 if __name__ == "__main__":
-    # Beispieltext
-    encrypted_text = "heissajuchei, ein ei"
+    # Beispiel verschlüsselter Text
+    crypttext_example = "xdytcyxtetydtgqehnxdytcyxtetydtgqehnxdytcyxtetydtgqehn"
 
-    # Erstellen einer Kasiski-Instanz
-    kasiski_instance = Kasiski(encrypted_text)
+    # Beispiel Klasse Kasiski
+    kasiski_instance = Kasiski(crypttext_example)
 
-    # Testen der dist-Methode
-    distances = kasiski_instance.dist(encrypted_text, "ei")
-    print(distances)  # Ausgabe: [9, 13, 17]
-
-    distances_hai = kasiski_instance.dist(encrypted_text, "hai")
-    print(distances_hai)  # Ausgabe: []
+    # Beispiel Nutzung der dist-Methode
+    distances = kasiski_instance.dist(crypttext_example, "xdy")
+    print(distances)

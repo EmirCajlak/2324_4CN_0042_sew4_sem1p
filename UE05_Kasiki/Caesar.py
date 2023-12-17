@@ -77,5 +77,22 @@ class Caesar:
                 decrypted_text += char
         return decrypted_text
 
+        def crack(self, ciphertext: str, elements: int = 1) -> list[str]:
+            """
+            Knackt den Schlüssel und gibt eine Liste möglicher Entschlüsselungen zurück.
+
+            :param ciphertext: Der verschlüsselte Text
+            :param elements: Anzahl der zurückzugebenden Möglichkeiten
+            :return: Liste möglicher Entschlüsselungen
+            """
+            possibilities = []
+            for i in range(26):
+                possible_key = chr((ord('a') + i) % 26 + ord('a'))
+                decrypted_text = self.decrypt(ciphertext, key=possible_key)
+                possibilities.append(decrypted_text)
+                if len(possibilities) == elements:
+                    break
+            return possibilities
+
 
 

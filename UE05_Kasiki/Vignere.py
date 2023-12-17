@@ -97,7 +97,6 @@ class Vigenere:
             cracked_positions = caesar.crack(substring, elements=1)
             possibilities.append((cracked_positions[0][0], ""))
         return possibilities
-
 # class Caesar:
 #     """
 #         Caesar Chiffre zur Verschlüsselung und Entschlüsselung von Texten.

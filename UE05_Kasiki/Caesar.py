@@ -64,5 +64,18 @@ class Caesar:
             :return: Entschlüsselter Text
             :raise ValueError: Wenn der Schlüssel nicht festgelegt ist
             """
+        key = key or self.key
+        if not key:
+            raise ValueError("Key must be set before decrypting")
+        decrypted_text = ""
+        for char in ciphertext:
+            if char.isalpha():
+                shift = ord(key) - ord('a')
+                decrypted_char = chr((ord(char.lower()) - ord('a') - shift) % 26 + ord('a'))
+                decrypted_text += decrypted_char.upper() if char.isupper() else decrypted_char
+            else:
+                decrypted_text += char
+        return decrypted_text
+
 
 

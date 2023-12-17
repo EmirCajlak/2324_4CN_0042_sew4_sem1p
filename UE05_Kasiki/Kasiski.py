@@ -12,6 +12,7 @@ class Kasiski:
         distances = [positions[i + 1] - positions[i] for i in range(len(positions) - 1)]
         return distances
 
+
 # Beispielanwendung
 if __name__ == "__main__":
     # Beispieltext

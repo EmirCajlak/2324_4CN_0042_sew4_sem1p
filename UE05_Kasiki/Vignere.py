@@ -55,7 +55,7 @@ class Vigenere:
             else:
                 encrypted_text += char
         return encrypted_text
-    #
+
     # def decrypt(self, ciphertext: str, key: str = None) -> str:
     #     """
     #     Entschlüsselt den Text mithilfe der Vigenere-Chiffre.

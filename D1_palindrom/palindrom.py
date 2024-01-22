@@ -2,9 +2,10 @@
 Author: Emir Cajlakovic 4CN
 UE04
 """
+__author__= "Emir Cajlakovic"
 
 
-def is_palindrom (s:str):
+def is_palindrom (s:str) -> bool:
     """
     Die Methode überprüft, ob der gegebene String von Main palindrom ist oder nicht
     [::-1],
@@ -80,15 +81,15 @@ if __name__ == "__main__":
 
 
     #Methode3
-    test_is_palindrom_produkt = palindrom_product(10000)
-    print(f'Größtes Palindromprodukt von zwei 3-stelligen Zahlen kleiner als 1000: {test_is_palindrom_produkt}')
+    test_is_palindrom_produkt = palindrom_product(1_000_000)
+    print(f'Größtes Palindromprodukt von zwei 3-stelligen Zahlen kleiner als 1000000: {test_is_palindrom_produkt}')
 
     test_is_palindrom_produkt2 = palindrom_product(5005)
     print(f'Größtes Palindromprodukt von zwei 3-stelligen Zahlen kleiner als 500: {test_is_palindrom_produkt2}')
 
     #Methode4
-    get_dec_hex_palindrom = get_dec_hex_palindrom(10000)
-    print(f'Größtes Palindrom im Dezimal- und Hexadezimalsystem kleiner als 10000: {get_dec_hex_palindrom}')
+    get_dec_hex_palindrom = get_dec_hex_palindrom(1_000_000)
+    print(f'Größtes Palindrom im Dezimal- und Hexadezimalsystem kleiner als 1000000: {get_dec_hex_palindrom}')
 
     get_dec_hex_palindrom2 = get_dec_hex_palindrom
     print(f'Größtes Palindrom im Dezimal- und Hexadezimalsystem kleiner als 5000: {get_dec_hex_palindrom2}')

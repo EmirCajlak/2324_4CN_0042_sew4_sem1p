@@ -94,14 +94,14 @@ class Vigenere:
         for i in range(key_length):
             substring = ciphertext[i::key_length]
             caesar = Caesar()
-            cracked_positions = caesar.crack(substring, elements=1)
+            cracked_positions = caesar.crack(substring, 1)
             possibilities.append((cracked_positions[0][0], ""))
         return possibilities
 
 class Caesar:
     """
-        Caesar Chiffre zur Verschlüsselung und Entschlüsselung von Texten.
-        """
+    Caesar Chiffre zur Verschlüsselung und Entschlüsselung von Texten.
+    """
 
     def __init__(self):
         """
@@ -199,7 +199,7 @@ if __name__ == "__main__":
     plaintext = "Hello, World!"
     encrypted_text = vigenere.encrypt(plaintext)
     decrypted_text = vigenere.decrypt(encrypted_text)
-    cracked_positions = vigenere.crack(encrypted_text, key_length=3)
+    cracked_positions = vigenere.crack(encrypted_text, 3)
 
     print(f"Plaintext: {plaintext}")
     print(f"Encrypted: {encrypted_text}")

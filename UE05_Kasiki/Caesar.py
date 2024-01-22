@@ -55,15 +55,15 @@ class Caesar:
                 encrypted_text += char
         return encrypted_text
 
-        def decrypt(self, ciphertext: str, key: str = None) -> str:
-            """
-            Entschlüsselt den Text mithilfe der Caesar-Chiffre.
+    def decrypt(self, ciphertext: str, key: str = None) -> str:
+        """
+        Entschlüsselt den Text mithilfe der Caesar-Chiffre.
 
-            :param ciphertext: Der zu entschlüsselnde Text
-            :param key: Optionaler Schlüssel, falls nicht festgelegt
-            :return: Entschlüsselter Text
-            :raise ValueError: Wenn der Schlüssel nicht festgelegt ist
-            """
+        :param ciphertext: Der zu entschlüsselnde Text
+        :param key: Optionaler Schlüssel, falls nicht festgelegt
+        :return: Entschlüsselter Text
+        :raise ValueError: Wenn der Schlüssel nicht festgelegt ist
+        """
         key = key or self.key
         if not key:
             raise ValueError("Key must be set before decrypting")
@@ -77,24 +77,24 @@ class Caesar:
                 decrypted_text += char
         return decrypted_text
 
-        def crack(self, ciphertext: str, elements: int = 1) -> list[str]:
-            """
-            Knackt den Schlüssel und gibt eine Liste möglicher Entschlüsselungen zurück.
+    def crack(self, ciphertext: str, elements: int = 1) -> list[str]:
+        """
+        Knackt den Schlüssel und gibt eine Liste möglicher Entschlüsselungen zurück.
 
-            :param ciphertext: Der verschlüsselte Text
-            :param elements: Anzahl der zurückzugebenden Möglichkeiten
-            :return: Liste möglicher Entschlüsselungen
-            """
-            possibilities = []
-            for i in range(26):
-                possible_key = chr((ord('a') + i) % 26 + ord('a'))
-                decrypted_text = self.decrypt(ciphertext, key=possible_key)
-                possibilities.append(decrypted_text)
-                if len(possibilities) == elements:
-                    break
-            return possibilities
+        :param ciphertext: Der verschlüsselte Text
+        :param elements: Anzahl der zurückzugebenden Möglichkeiten
+        :return: Liste möglicher Entschlüsselungen
+        """
+        possibilities = []
+        for i in range(26):
+            possible_key = chr((ord('a') + i) % 26 + ord('a'))
+            decrypted_text = self.decrypt(ciphertext, key=possible_key)
+            possibilities.append(decrypted_text)
+            if len(possibilities) == elements:
+                break
+        return possibilities
 
-        if __name__ == "__main__":
+if __name__ == "__main__":
             # Beispiel für die Verwendung der Caesar-Klasse
             caesar = Caesar()
             caesar.key = 'd'
@@ -102,7 +102,7 @@ class Caesar:
             plaintext = "Hello, World!"
             encrypted_text = caesar.encrypt(plaintext)
             decrypted_text = caesar.decrypt(encrypted_text)
-            cracked_texts = caesar.crack(encrypted_text, elements=5)
+            cracked_texts = caesar.crack(encrypted_text, 5)
 
             print(f"Plaintext: {plaintext}")
             print(f"Encrypted: {encrypted_text}")

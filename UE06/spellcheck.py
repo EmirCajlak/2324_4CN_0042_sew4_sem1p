@@ -2,7 +2,7 @@
 Author: Emir Cajlakovic 4CN
 UE06
 """
-
+import string
 from typing import List, Tuple, Set
 # 1)
 def read_all_words(filename: str) -> Set[str]:
@@ -38,8 +38,11 @@ print(result_list)
 
 def edit1(wort: str) -> Set[str]:
     # Funktion zum Einfügen eines Buchstabens
-    def insert(word: str, c: str) -> str:
-        return [word[:i] + c + word[i:] for i in range(len(word) + 1)]
+    alphabet = string.ascii_lowercase  # Das Alphabet in Kleinbuchstaben
+
+    def insert(head, new_char, tail):
+        # Fügt einen neuen Buchstaben zwischen head und tail ein
+        return head + new_char + tail
 
     # Funktion zum Löschen eines Buchstabens
     def delete(word: str) -> str:
@@ -50,8 +53,9 @@ def edit1(wort: str) -> Set[str]:
         return [word[:i] + word[i+1] + word[i] + word[i+2:] for i in range(len(word)-1)]
 
     # Funktion zum Ersetzen eines Buchstabens
-    def replace(word: str, c: str) -> str:
-        return [word[:i] + c + word[i+1:] for i in range(len(word))]
+    def replace(head, new_char, tail):
+        # Ersetzen Sie den ersten Buchstaben in head durch new_char
+        return head + new_char + tail[1:]
 
     # Alle möglichen Wörter mit einem Fehler weniger
     candidates = set()
@@ -63,10 +67,10 @@ def edit1(wort: str) -> Set[str]:
     candidates.update([head + tail[1] + tail[0] + tail[2:] for head, tail in split_word(wort) if len(tail) > 1])
 
     # Ein Buchstabe ersetzt
-    candidates.update(replace(head, tail[0]) for head, tail in split_word(wort) if tail)
+    candidates.update([replace(head, tail[0], tail[1:]) for head, tail in split_word(word) if tail])
 
     # Ein Buchstabe eingefügt
-    candidates.update(insert(head, tail[0]) for head, tail in split_word(wort))
+    candidates.update([insert(head, new_char, tail) for head, tail in split_word(word) for new_char in alphabet])
 
     return candidates
 

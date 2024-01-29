@@ -78,3 +78,24 @@ def edit1(wort: str) -> Set[str]:
 word = "abc"
 result_set = edit1(word)
 print(result_set)
+
+# 4)
+
+def edit1_good(wort: str, alle_woerter: List[str]) -> Set[str]:
+    return edit1(wort) & set(alle_woerter)
+
+def correct(word: str, alle_woerter: List[str]) -> Set[str]:
+    candidates = edit1_good(word, alle_woerter) or {word}
+    return candidates
+
+# Beispielaufruf
+filename = 'C:\\Users\\User\\Desktop\\4CN\\Softwareentwicklung\\de-en.txt'
+alle_woerter = read_all_words(filename)
+word = 'apple'
+
+# Verwende das correct-Unterprogramm, um die korrekten Wörter zu erhalten
+result_set = correct(word, alle_woerter)
+
+# Ausgabe der Ergebnisse
+print(f"Korrekturen für '{word}': {result_set}")
+

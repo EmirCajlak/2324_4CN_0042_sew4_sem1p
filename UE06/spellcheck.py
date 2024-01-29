@@ -36,3 +36,41 @@ print(result_list)
 
 # 3)
 
+def edit1(wort: str) -> Set[str]:
+    # Funktion zum Einfügen eines Buchstabens
+    def insert(word: str, c: str) -> str:
+        return [word[:i] + c + word[i:] for i in range(len(word) + 1)]
+
+    # Funktion zum Löschen eines Buchstabens
+    def delete(word: str) -> str:
+        return [word[:i] + word[i+1:] for i in range(len(word))]
+
+    # Funktion zum Vertauschen von zwei aufeinanderfolgenden Buchstaben
+    def transpose(word: str) -> str:
+        return [word[:i] + word[i+1] + word[i] + word[i+2:] for i in range(len(word)-1)]
+
+    # Funktion zum Ersetzen eines Buchstabens
+    def replace(word: str, c: str) -> str:
+        return [word[:i] + c + word[i+1:] for i in range(len(word))]
+
+    # Alle möglichen Wörter mit einem Fehler weniger
+    candidates = set()
+
+    # Ein Buchstabe fehlt
+    candidates.update([tail for head, tail in split_word(wort) if tail])
+
+    # Zwei Buchstaben vertauscht
+    candidates.update([head + tail[1] + tail[0] + tail[2:] for head, tail in split_word(wort) if len(tail) > 1])
+
+    # Ein Buchstabe ersetzt
+    candidates.update(replace(head, tail[0]) for head, tail in split_word(wort) if tail)
+
+    # Ein Buchstabe eingefügt
+    candidates.update(insert(head, tail[0]) for head, tail in split_word(wort))
+
+    return candidates
+
+# Beispielaufruf
+word = "abc"
+result_set = edit1(word)
+print(result_set)

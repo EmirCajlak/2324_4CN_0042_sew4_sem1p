@@ -4,7 +4,7 @@ UE06
 """
 
 from typing import List, Tuple, Set
-
+# 1)
 def read_all_words(filename: str) -> Set[str]:
     word_set = set()
 
@@ -23,3 +23,16 @@ word_set = read_all_words(filename)
 
 # Ausgabe des Sets
 print(word_set)
+
+# 2)
+def split_word(wort: str) -> List[Tuple[str, str]]:
+    result = [(wort[:i], wort[i:]) for i in range(len(wort) + 1)]
+    return result
+
+# Beispielaufruf
+word = "abcd"
+result_list = split_word(word)
+print(result_list)
+
+# 3)
+

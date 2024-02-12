@@ -63,9 +63,11 @@ def edit1_good(word: str, all_words: List[str]) -> Set[str]:
     return edit1(word) & set(all_words)
 
 def edit2_good(word:str, all_words:list[str]) -> set[str]:
-    """ed2= das set was am Ende rauskommen soll, die erste schleife schreibt in e1 alle mögliochen edit 1 fehlern
-    und die zweite Schleife schreibt dann ins endergebnisset alle edit 1 fehlern von den bereits edit 1 fehlern was
-    zu edit 2 fehlern wird und im wörterbuch stehen ins ed2 hinein.
+    """
+    Jedes Element in der Menge von Wörtern mit einer Edit-Distanz von eins iteriert, die von der Funktion edit1(word) zurückgegeben wird.
+    Innerhalb der äußeren Schleife gibt es eine weitere Schleife, die über jedes Wort candidate in der Menge von Wörtern iteriert,
+    die von der Funktion edit1_good(candidate, all_words) zurückgegeben wird. Diese Menge enthält nur die Wörter aus der Menge edit1(word),
+    die auch in der Liste all_words enthalten sind, was bedeutet, dass sie als korrekt angesehen werden.
     """
     return {candidate for candidate in edit1(word) for candidate in edit1_good(candidate, all_words)}
 

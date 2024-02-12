@@ -23,7 +23,7 @@ def read_file(filename: str) -> Set[str]:
 
 def split_word(word: str) -> List[Tuple[str, str]]:
     """
-    Teilt ein Wort in alle möglichen Kombinationen von Anfang und Ende auf.
+    Teilt ein Wort in alle möglichen Kombinationen von Anfang und Ende auf. ('', 'abc'), ('a', 'bc'), ('ab', 'c'), ('abc', '').
 
     :param word: Das zu teilende Wort.
     :return: Eine Liste von Tupeln, die Anfangs- und Endkombinationen enthalten.
@@ -35,7 +35,7 @@ def split_word(word: str) -> List[Tuple[str, str]]:
     [('', 'hallo'), ('h', 'allo'), ('ha', 'llo'), ('hal', 'lo'), ('hall', 'o'), ('hallo', '')]
     """
 
-    return [(word[:i], word[i:]) for i in range(len(word) + 1)]
+    return [(word[:i], word[i:]) for i in range(len(word) + 1)] #word[:i] enthält die ersten i Zeichen des Wortes, während word[i:] die restlichen Zeichen enthält, beginnend bei Index i. Anschließend kombiniert man die Präfixe mit den Suffixe
 
 def edit1(word: str) -> Set[str]:
     """
@@ -46,10 +46,10 @@ def edit1(word: str) -> Set[str]:
     """
     splits = split_word(word)
     letters = string.ascii_lowercase
-    delete = {a + b[1:] for a, b in splits if b}
-    misplaced = {a + b[1] + b[0] + b[2:] for a, b in splits if len(b) > 1}
-    replaced = {a + c + b[1:] for a, b in splits if b for c in letters}
-    inserted = {a + c + b for a, b in splits for c in letters}
+    delete = {a + b[1:] for a, b in splits if b} #den ersten Buchstaben aus dem zweiten Teil jedes Splittupels entfernen, Die Bedingung if b stellt sicher, dass nur Splittupels verarbeitet werden, die mindestens zwei Teile haben.
+    misplaced = {a + b[1] + b[0] + b[2:] for a, b in splits if len(b) > 1} #den zweiten und ersten Buchstaben im zweiten Teil jedes Splittupels vertauschen
+    replaced = {a + c + b[1:] for a, b in splits if b for c in letters} # jeden Buchstaben im zweiten Teil jedes Splittupels durch jeden Kleinbuchstaben des Alphabets ersetzen
+    inserted = {a + c + b for a, b in splits for c in letters} #jeden Kleinbuchstaben des Alphabets zwischen den beiden Teilen jedes Splittupels einfügen
     return misplaced | delete | replaced | inserted
 
 def edit1_good(word: str, all_words: List[str]) -> Set[str]:

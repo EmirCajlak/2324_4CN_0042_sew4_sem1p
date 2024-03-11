@@ -29,22 +29,19 @@ class Fraction:
                 break
 
     def __str__(self):
-        x = abs(self.zaehler) % abs(self.nenner) #abs=minus wird zu plus und plus zu plus, z.B. 4/2 wird zu 2 weil 4%2 = 2 mit 0 rest
-        y = math.floor(abs(self.zaehler) / abs(self.nenner)) #rundet die zahl nach unten
-        minus = ""
-        if (self.zaehler<0 and self.nenner>0) or (self.zaehler>0 and self.nenner<0):
-            minus = "-"
+        rest = abs(self.zaehler) % abs(self.nenner) #abs=minus wird zu plus und plus zu plus, z.B. 4/2 wird zu 2 weil 4%2 = 2 mit 0 rest
+        ganzteil = math.floor(abs(self.zaehler) / abs(self.nenner)) #rundet die zahl nach unten
 
-        if y == 0:
-            if x == 0:
-                return minus+str(0)
+        if ganzteil == 0:
+            if rest == 0:
+                return "-"+str(0)
             else:
-                return minus+str(x)+"/"+str(abs(self.nenner))
+                return "-"+str(rest)+"/"+str(abs(self.nenner))
         else:
-            if x == 0:
-                return minus+str(y)
+            if rest == 0:
+                return "-"+str(ganzteil)
             else:
-                return minus+str(y)+" "+str(x)+"/"+str(abs(self.nenner))
+                return "-"+str(ganzteil)+" "+str(rest)+"/"+str(abs(self.nenner))
 
     def __float__(self):
         return self.zaehler/self.nenner

@@ -91,7 +91,6 @@ def correct(word: str, all_words: List[str]) -> Set[str]:
                   edit2_good(word_lower, all_words) or
                   {word_lower})
     return candidates
-
 # Doctests
 if __name__ == "__main__":
     word_set:set[str] = read_file("C:\\Users\\User\\PycharmProjects\\python4CN\\UE06\\de-en.txt")

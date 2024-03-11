@@ -49,5 +49,13 @@ class Fraction:
     def __float__(self):
         return self.zaehler/self.nenner
 
-
+    def __add__(self, b):
+        a = b
+        if isinstance(b, int):
+            a = Fraction(b, 1)
+        n = math.floor(self.nenner*a.nenner)
+        z = math.floor(self.zaehler*(n/self.nenner)+a.zaehler*(n/a.nenner))
+        F = Fraction(z, n)
+        F.kuerzen()
+        return F
 

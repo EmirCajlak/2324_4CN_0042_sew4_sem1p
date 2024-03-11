@@ -59,3 +59,6 @@ class Fraction:
         F.kuerzen()
         return F
 
+    def __radd__(self, b):
+        return self+b
+

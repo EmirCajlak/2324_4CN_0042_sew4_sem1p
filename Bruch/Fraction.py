@@ -12,7 +12,7 @@ class Fraction:
                 raise ArithmeticError("Denominator cant be zero!")
             self.zaehler = zaehler
             self.nenner = nenner
-
+            self.kuerzen()
         except:
             raise
 

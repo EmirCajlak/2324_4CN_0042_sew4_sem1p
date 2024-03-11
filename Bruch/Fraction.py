@@ -122,7 +122,7 @@ class Fraction:
         return self.zaehler == b.zaehler and self.nenner == b.nenner
 
     def __ne__(self, b):
-        return self.zaehler != b.numerator or self.nenner != b.nenner
+        return self.zaehler != b.zaehler or self.nenner != b.nenner
 
     def __neg__(self):
         return Fraction(-self.zaehler, self.nenner)

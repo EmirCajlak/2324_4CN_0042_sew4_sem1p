@@ -105,3 +105,27 @@ class Fraction:
         if isinstance(b, int):
             a = Fraction(b, 1)
         return a/self
+
+    def __lt__(self, b):
+        return float(self) < float(b)
+
+    def __gt__(self, b):
+        return float(self) > float(b)
+
+    def __le__(self, b):
+        return float(self) <= float(b)
+
+    def __ge__(self, b):
+        return float(self) >= float(b)
+
+    def __eq__(self, b):
+        return self.zaehler == b.numerator and self.nenner == b.nenner
+
+    def __ne__(self, b):
+        return self.zaehler != b.numerator or self.nenner != b.nenner
+
+    def __neg__(self):
+        return Fraction(-self.zaehler, self.nenner)
+
+    def __repr__(self):
+        return "Fraction("+str(self.zaehler)+", "+str(self.nenner)+")"

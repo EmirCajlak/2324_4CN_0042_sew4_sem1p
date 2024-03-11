@@ -90,3 +90,18 @@ class Fraction:
 
     def __rmul__(self, b):
         return self*b
+    def __truediv__(self, b):
+        a = b
+        if isinstance(b, int):
+            a = Fraction(b, 1)
+        n = math.floor(self.nenner * a.zaehler)
+        z = math.floor(self.zaehler * a.nenner)
+        F = Fraction(z, n)
+        F.kuerzen()
+        return F
+
+    def __rtruediv__(self, b):
+        a = b
+        if isinstance(b, int):
+            a = Fraction(b, 1)
+        return a/self

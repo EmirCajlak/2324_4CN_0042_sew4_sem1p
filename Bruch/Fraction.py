@@ -88,3 +88,5 @@ class Fraction:
         F.kuerzen()
         return F
 
+    def __rmul__(self, b):
+        return self*b

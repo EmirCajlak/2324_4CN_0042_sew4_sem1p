@@ -46,5 +46,8 @@ class Fraction:
             else:
                 return minus+str(y)+" "+str(x)+"/"+str(abs(self.nenner))
 
+    def __float__(self):
+        return self.zaehler/self.nenner
+
 
 

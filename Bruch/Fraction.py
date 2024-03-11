@@ -72,3 +72,19 @@ class Fraction:
         F.kuerzen()
         return F
 
+    def __rsub__(self, b):
+        a = b
+        if isinstance(b, int):
+            a = Fraction(b, 1)
+        return a-self
+
+    def __mul__(self, b):
+        a = b
+        if isinstance(b, int):
+            a = Fraction(b, 1)
+        n = math.floor(self.nenner * a.nenner)
+        z = math.floor(self.zaehler * a.zaehler)
+        F = Fraction(z, n)
+        F.kuerzen()
+        return F
+

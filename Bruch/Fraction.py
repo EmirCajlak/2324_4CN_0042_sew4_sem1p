@@ -62,3 +62,13 @@ class Fraction:
     def __radd__(self, b):
         return self+b
 
+    def __sub__(self, b):
+        a = b
+        if isinstance(b, int):
+            a = Fraction(b, 1)
+        n = math.floor(self.nenner*a.nenner)
+        z = math.floor(self.zaehler*(n/self.nenner)-a.zaehler*(n/a.nenner))
+        F = Fraction(z, n)
+        F.kuerzen()
+        return F
+

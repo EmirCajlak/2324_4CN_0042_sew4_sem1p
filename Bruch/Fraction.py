@@ -31,27 +31,31 @@ class Fraction:
     def __str__(self):
         rest = abs(self.zaehler) % abs(self.nenner) #abs=minus wird zu plus und plus zu plus, z.B. 4/2 wird zu 2 weil 4%2 = 2 mit 0 rest
         ganzteil = math.floor(abs(self.zaehler) / abs(self.nenner)) #rundet die zahl nach unten
+        minus=''
+
+        if (self.zaehler<0 and self.nenner>0) or (self.zaehler>0 and self.nenner<0):
+            minus = "-"
 
         if ganzteil == 0:
             if rest == 0:
-                return "-"+str(0)
+                return minus+str(0)
             else:
-                return "-"+str(rest)+"/"+str(abs(self.nenner))
+                return minus+str(rest)+"/"+str(abs(self.nenner))
         else:
             if rest == 0:
-                return "-"+str(ganzteil)
+                return minus+str(ganzteil)
             else:
-                return "-"+str(ganzteil)+" "+str(rest)+"/"+str(abs(self.nenner))
+                return minus+str(ganzteil)+" "+str(rest)+"/"+str(abs(self.nenner))
 
     def __float__(self):
         return self.zaehler/self.nenner
 
     def __add__(self, b):
         a = b
-        if isinstance(b, int):
+        if isinstance(b, int):  #2/3+1/2
             a = Fraction(b, 1)
-        n = math.floor(self.nenner*a.nenner)
-        z = math.floor(self.zaehler*(n/self.nenner)+a.zaehler*(n/a.nenner))
+        n = math.floor(self.nenner*a.nenner) #n=6
+        z = math.floor(self.zaehler*(n/self.nenner)+a.zaehler*(n/a.nenner)) #z=7
         F = Fraction(z, n)
         F.kuerzen()
         return F

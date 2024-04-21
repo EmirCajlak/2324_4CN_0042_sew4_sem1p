@@ -31,7 +31,27 @@ def main():
     elif args.cipher == 'vigenere' or args.cipher == 'v':
         cipher_mode = 'Vignere'
 
+    key: str = ""
+    if args.cipher == 'caesar':
+        if not os.path.isfile(args.infile):
+            print(f'{args.infile}: No such File or directory found')
+            sys.exit(1)
+        cipherC = Caesar()
+        with open(args.infile, 'r') as f:
+            crypttext = f.read()
+            key = "".join(cipherC.crack(crypttext))
+    else:
+        if not os.path.isfile(args.infile):
+            print(f'{args.infile}: No such File or directory found')
+            sys.exit(1)
+        with open(args.infile, 'r') as f:
+            cipherV = Kasiski(f.read())
+            key = (cipherV.crack_key(3))
+    if args.verbose:
+        print(f'Cracking {cipher_mode}-encryptetd file {args.infile}: Key=' + key)
 
+    if args.quiet:
+        print(key)
 
 if __name__ == "__main__":
     main()

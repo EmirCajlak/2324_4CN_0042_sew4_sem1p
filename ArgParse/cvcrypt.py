@@ -26,6 +26,26 @@ def main():
     args = parser.parse_args()
 
 
+    if args.cipher == 'caesar' or args.cipher == 'c':
+        cipher_mode='Caesar'
+    elif args.cipher == 'vigenere' or args.cipher == 'v':
+        cipher_mode='Vigenere'
+    if args.encrypt:
+        mode='Encrypting'
+    elif args.decrypt:
+        mode='Decrypting'
+
+    if args.verbose:
+        print(f'{mode} {cipher_mode} with key={args.key} from {args.infile} into {args.outFile}')
+
+    if args.quiet:
+        print(f'{mode} {cipher_mode} with key= {args.key}')
+
+    if args.cipher == 'caesar' or args.cipher == 'c':
+        cipher_method=Caesar(args.key)
+    elif args.cipher == 'vigenere' or args.cipher == 'v':
+        cipher_method=Vignere(args.key)
+
 
 
 

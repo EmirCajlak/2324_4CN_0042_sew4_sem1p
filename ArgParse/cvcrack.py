@@ -26,6 +26,11 @@ def main():
         help='Does not print the cyphered text')
     args = parser.parse_args()
 
+    if args.cipher == 'caesar' or args.cipher == 'c':
+        cipher_mode = 'Caesar'
+    elif args.cipher == 'vigenere' or args.cipher == 'v':
+        cipher_mode = 'Vignere'
+
 
 
 

@@ -77,7 +77,6 @@ def main():
                 f1.write(cipher_method.decrypt(plaintxt))
 
 
-
 if __name__ == '__main__':
     main()
 

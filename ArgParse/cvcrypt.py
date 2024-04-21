@@ -46,7 +46,35 @@ def main():
     elif args.cipher == 'vigenere' or args.cipher == 'v':
         cipher_method=Vignere(args.key)
 
-
+    if args.encrypt:
+        #print("test1")
+        if not os.path.isfile(args.infile):
+           #print(f'{args.infile}: No such File or directory found')
+           sys.exit(1)
+        with open(args.infile, 'r') as f:
+            plaintxt=f.read()
+        with open(args.outFile, 'w') as f1:
+            if args.cipher == 'caesar' or args.cipher == 'c':
+                #print("Caesar modec-e")
+                f1.write(cipher_method.encrypt(plaintxt))
+            else:
+                #print("Vig modev-e")
+                f1.write(cipher_method.encrypt(plaintxt))
+    if args.decrypt:
+        if not os.path.isfile(args.infile):
+            #print(f'{args.infile}: No such File or directory found')
+            sys.exit(1)
+        with open(args.infile, 'r') as f:
+            plaintxt=f.read()
+            #print(plaintxt)
+        with open(args.outFile, 'w') as f1:
+            if args.cipher == 'caesar' or args.cipher == 'c':
+                #print("Caesar modec-d")
+                f1.write(cipher_method.decrypt(plaintxt))
+            else:
+                #print("Vig modev-d")
+                print(str(cipher_method))
+                f1.write(cipher_method.decrypt(plaintxt))
 
 
 

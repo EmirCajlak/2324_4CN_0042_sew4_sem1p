@@ -9,7 +9,13 @@ from Kasiski import Caesar, Vignere, Kasiski
 import argparse
 
 def main():
-    parser = argparse.ArgumentParser(description='cvrypt - Caesar & Vigenere encrypter / decrypter by MAT /HTL Rennweg')
+    """
+       Hauptfunktion zum Ausführen des cvrypt-Skripts.
+       Verwendet argparse, um Befehlszeilenargumente zu parsen und das entsprechende Chiffrier- und Entschlüsselungsverfahren auszuführen.
+       Das cvrypt.py-Skript ist ein Python-Programm, das über die Befehlszeile aufgerufen wird und dazu dient, Dateien mit Caesar- oder
+       Vigenere-Chiffren zu verschlüsseln oder zu entschlüsseln
+    """
+    parser = argparse.ArgumentParser(description='cvrypt - Caesar & Vigenere encrypter / decrypter by CAJ /HTL Rennweg')
     parser.add_argument( '-c','--cipher', help='Zu verwendete Chiffre', choices=['caesar','c','vigenere','v'])
 
     group = parser.add_mutually_exclusive_group()
@@ -25,31 +31,33 @@ def main():
     parser.add_argument('outFile', help='Zieldatei', type=str, nargs='?')
     args = parser.parse_args()
 
-
+    # Bestimme den Chiffriermodus
     if args.cipher == 'caesar' or args.cipher == 'c':
         cipher_mode='Caesar'
     elif args.cipher == 'vigenere' or args.cipher == 'v':
         cipher_mode='Vigenere'
+
+    # Bestimme den Modus (verschlüsseln/entschlüsseln)
     if args.encrypt:
         mode='Encrypting'
     elif args.decrypt:
         mode='Decrypting'
 
+    # Ausgabe des Vorgangs je nach Verbositätsstufe
     if args.verbose:
         print(f'{mode} {cipher_mode} with key={args.key} from {args.infile} into {args.outFile}')
-
     if args.quiet:
         print(f'{mode} {cipher_mode} with key= {args.key}')
 
+    # Initialisierung des Chiffrierverfahrens
     if args.cipher == 'caesar' or args.cipher == 'c':
         cipher_method=Caesar(args.key)
     elif args.cipher == 'vigenere' or args.cipher == 'v':
         cipher_method=Vignere(args.key)
 
+    # Ausführung der Verschlüsselung
     if args.encrypt:
-        #print("test1")
         if not os.path.isfile(args.infile):
-           #print(f'{args.infile}: No such File or directory found')
            sys.exit(1)
         with open(args.infile, 'r') as f:
             plaintxt=f.read()
@@ -60,19 +68,17 @@ def main():
             else:
                 #print("Vig modev-e")
                 f1.write(cipher_method.encrypt(plaintxt))
+
+    # Ausführung der Entschlüsselung
     if args.decrypt:
         if not os.path.isfile(args.infile):
-            #print(f'{args.infile}: No such File or directory found')
             sys.exit(1)
         with open(args.infile, 'r') as f:
             plaintxt=f.read()
-            #print(plaintxt)
         with open(args.outFile, 'w') as f1:
             if args.cipher == 'caesar' or args.cipher == 'c':
-                #print("Caesar modec-d")
                 f1.write(cipher_method.decrypt(plaintxt))
             else:
-                #print("Vig modev-d")
                 print(str(cipher_method))
                 f1.write(cipher_method.decrypt(plaintxt))
 

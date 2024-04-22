@@ -148,6 +148,16 @@ class Fraction:
 
         >>> Fraction(1, -2)
         Fraction(1, -2)
+
+        >>> fraction = Fraction(3, 4)
+        >>> fraction.numerator = 5
+        >>> fraction.numerator
+        5
+
+         >>> fraction = Fraction(3, 4)
+        >>> fraction.denominator = 6
+        >>> fraction.denominator
+        6
         """
     def __init__(self, zaehler=0, nenner=1):
         try:
@@ -273,3 +283,19 @@ class Fraction:
 
     def __repr__(self):
         return "Fraction("+str(self.zaehler)+", "+str(self.nenner)+")"
+
+    @property
+    def numerator(self):
+        return self._numerator
+
+    @numerator.setter
+    def numerator(self, value):
+        self._numerator = value
+
+    @property
+    def denominator(self):
+        return self._denominator
+
+    @denominator.setter
+    def denominator(self, value):
+        self._denominator = value
